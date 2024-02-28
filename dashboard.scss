@@ -1,0 +1,144 @@
+// Define variables
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$text-color: #333;
+$font-family: Arial, sans-serif;
+$padding: 20px;
+$border-radius: 10px;
+$box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+$widget-padding: 20px;
+$widget-margin-bottom: 20px;
+
+// Apply SCSS features
+.header {
+  background-color: $primary-color;
+  color: white;
+  padding: $padding;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    margin: 0;
+  }
+
+  &__nav {
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      &__menu {
+        display: flex;
+
+        &-item {
+          margin-right: 10px;
+        }
+
+        &-link {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.dashboard-sidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: $padding;
+
+  h2 {
+    margin-bottom: 1rem;
+    color: $text-color;
+  }
+
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+
+      a {
+        text-decoration: none;
+        color: $text-color;
+
+        &:hover {
+          color: #555;
+        }
+      }
+    }
+  }
+}
+
+.dashboard-main { 
+  padding: $padding;
+  background-color: #f9f9f9; 
+  border-radius: $border-radius; 
+  box-shadow: $box-shadow; 
+}
+
+.widget {
+  margin-bottom: $widget-margin-bottom; 
+  padding: $widget-padding;
+  background-color: #fff; 
+  border-radius: $border-radius; 
+  box-shadow: $box-shadow;
+}
+
+h3 {
+  margin-top: 0;
+  color: $text-color; 
+}
+
+ul {
+  list-style: none; 
+  padding: 0; 
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px; 
+}
+
+a {
+  text-decoration: none; 
+  color: #555; 
+  transition: color 0.3s ease; 
+}
+
+a:hover {
+  color: #4caf50; 
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 250px; 
+  grid-template-rows: auto auto 1fr; 
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "sidebar main";
+  min-height: 100vh; 
+   @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar";
+}
+
+.header {
+  grid-area: header; 
+}
+
+.dashboard-sidebar {
+  grid-area: sidebar; 
+}
+
+.dashboard-main {
+  grid-area: main;
+}
