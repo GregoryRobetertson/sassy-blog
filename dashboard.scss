@@ -2,24 +2,62 @@
 $primary-color: #3498db;
 $secondary-color: #2ecc71;
 $text-color: #333;
-$font-family: Arial, sans-serif;
+$font-family: 'Arial', sans-serif;
 $padding: 20px;
 $border-radius: 10px;
-$box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Refined box shadow
 $widget-padding: 20px;
 $widget-margin-bottom: 20px;
 
+// Define mixins
+@mixin flex-layout($justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin button-style($background-color, $text-color, $border-radius) {
+  background-color: $background-color;
+  color: $text-color;
+  border-radius: $border-radius;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: darken($background-color, 10%);
+  }
+}
+
+@mixin font-style($font-family, $font-size, $line-height) {
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
 // Apply SCSS features
+.flex-container {
+  @include flex-layout;
+}
+
+.button-primary {
+  @include button-style($primary-color, white, $border-radius);
+}
+
+.button-secondary {
+  @include button-style($secondary-color, white, $border-radius * 2);
+}
+
 .header {
   background-color: $primary-color;
   color: white;
   padding: $padding;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-layout(space-between, center);
+  box-shadow: $box-shadow; // Apply box shadow for header
 
   &__title {
     margin: 0;
+    @include font-style($font-family, 24px, 1.5);
   }
 
   &__nav {
@@ -31,7 +69,7 @@ $widget-margin-bottom: 20px;
         display: flex;
 
         &-item {
-          margin-right: 10px;
+          margin-right: 20px; // Increase margin for menu items
         }
 
         &-link {
@@ -47,9 +85,11 @@ $widget-margin-bottom: 20px;
   width: 250px;
   background-color: #f0f0f0;
   padding: $padding;
+  @include font-style($font-family, 16px, 1.6);
+  box-shadow: $box-shadow; // Apply box shadow for sidebar
 
   h2 {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: $text-color;
   }
 
@@ -59,7 +99,7 @@ $widget-margin-bottom: 20px;
     margin: 0;
 
     li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem; // Increase margin between menu items
 
       a {
         text-decoration: none;
@@ -73,70 +113,77 @@ $widget-margin-bottom: 20px;
   }
 }
 
-.dashboard-main { 
+.dashboard-main {
   padding: $padding;
-  background-color: #f9f9f9; 
-  border-radius: $border-radius; 
-  box-shadow: $box-shadow; 
+  background-color: #f9f9f9;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
 }
 
 .widget {
-  margin-bottom: $widget-margin-bottom; 
+  margin-bottom: $widget-margin-bottom;
   padding: $widget-padding;
-  background-color: #fff; 
-  border-radius: $border-radius; 
+  background-color: #fff;
+  border-radius: $border-radius;
   box-shadow: $box-shadow;
 }
 
 h3 {
   margin-top: 0;
-  color: $text-color; 
+  color: $text-color;
+  @include font-style($font-family, 22px, 1.3); // Adjust font size for headings
+}
+
+p {
+  color: $text-color;
+  @include font-style($font-family, 16px, 1.6);
 }
 
 ul {
-  list-style: none; 
-  padding: 0; 
+  list-style: none;
+  padding: 0;
   margin: 0;
 }
 
 li {
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 a {
-  text-decoration: none; 
-  color: #555; 
-  transition: color 0.3s ease; 
-}
+  text-decoration: none;
+  color: #555;
+  transition: color 0.3s ease;
 
-a:hover {
-  color: #4caf50; 
+  &:hover {
+    color: #4caf50;
+  }
 }
-
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 250px; 
-  grid-template-rows: auto auto 1fr; 
+  grid-template-columns: 1fr 250px;
+  grid-template-rows: auto auto 1fr;
   grid-template-areas:
     "header header"
     "sidebar main"
     "sidebar main";
-  min-height: 100vh; 
-   @media screen and (max-width: 768px) {
+  min-height: 100vh;
+  
+  @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     grid-template-areas:
       "header"
       "main"
       "sidebar";
+  }
 }
 
 .header {
-  grid-area: header; 
+  grid-area: header;
 }
 
 .dashboard-sidebar {
-  grid-area: sidebar; 
+  grid-area: sidebar;
 }
 
 .dashboard-main {
