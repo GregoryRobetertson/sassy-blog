@@ -1,0 +1,46 @@
+.dashboard-main {
+  padding: $padding;
+  background-color: #f9f9f9;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+.widget {
+  margin-bottom: $widget-margin-bottom;
+  padding: $widget-padding;
+  background-color: #fff;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "sidebar main";
+  min-height: 100vh;
+  
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar";
+  }
+}
+
+.header {
+  grid-area: header;
+}
+
+.dashboard-sidebar {
+  grid-area: sidebar;
+}
+
+.dashboard-main {
+  grid-area: main;
+}

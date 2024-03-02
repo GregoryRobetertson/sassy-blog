@@ -1,0 +1,31 @@
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 1rem; // Increase margin between menu items
+
+      a {
+        text-decoration: none;
+        color: $text-color;
+
+        &:hover {
+          color: #555;
+        }
+      }
+    }
+  }
+
+  .dashboard-sidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: $padding;
+  @include font-style($font-family, 16px, 1.6);
+  box-shadow: $box-shadow; // Apply box shadow for sidebar
+
+  h2 {
+    margin-bottom: 1.5rem;
+    color: $text-color;
+  }
+}

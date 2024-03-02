@@ -1,0 +1,32 @@
+.header {
+  background-color: $primary-color;
+  color: white;
+  padding: $padding;
+  @include flex-layout(space-between, center);
+  box-shadow: $box-shadow; // Apply box shadow for header
+
+  &__title {
+    margin: 0;
+    @include font-style($font-family, 24px, 1.5);
+  }
+
+  &__nav {
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      &__menu {
+        display: flex;
+
+        &-item {
+          margin-right: 20px; // Increase margin for menu items
+        }
+
+        &-link {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
